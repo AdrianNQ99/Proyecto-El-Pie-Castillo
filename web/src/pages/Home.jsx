@@ -1,8 +1,11 @@
- const Home = () => {
-    return (
-        <div>
-        <h1>Home</h1>
-        </div>
-    );
-    }
+import React from 'react';
+import homeImage from '../assets/homeImage.jpg'; 
+const Home = () => {
+  return (
+    <div>
+      <img src={homeImage} alt="Chimenea El Pie Castillo" />
+    </div>
+  );
+}
+
 export default Home;
