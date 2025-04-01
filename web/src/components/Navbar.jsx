@@ -24,15 +24,40 @@ import { routesConfig } from "../routes/routesConfig";
 function ResponsiveAppBar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  // Detect scroll to change navbar background
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#424242" }}>
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: scrolled ? "rgba(0, 0, 0, 0.8)" : "transparent",
+        transition: "background-color 0.3s ease",
+        boxShadow: scrolled ? 3 : "none",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Mobile Menu Icon */}
           <Box sx={{ display: { xs: "flex", md: "none" }, mr: 2 }}>
             <IconButton
               size="large"
@@ -44,6 +69,7 @@ function ResponsiveAppBar() {
             </IconButton>
           </Box>
 
+          {/* Logo */}
           <Typography
             variant="h6"
             noWrap
@@ -60,7 +86,8 @@ function ResponsiveAppBar() {
             El Pie Castillo
           </Typography>
 
-          <Box sx={{ flexGrow: 1,gap:2, display: { xs: "none", md: "flex" } }}>
+          {/* Desktop Navigation */}
+          <Box sx={{ flexGrow: 1, gap: 2, display: { xs: "none", md: "flex" } }}>
             {routesConfig.map((page) => (
               <Button
                 key={page.name}
@@ -72,6 +99,7 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
+          {/* Social Icons */}
           <Box sx={{ display: "flex", gap: 1 }}>
             <WhatsAppIcon />
             <FacebookIcon />
@@ -79,6 +107,7 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
 
+      {/* Mobile Drawer */}
       <Drawer anchor="left" open={mobileOpen} onClose={handleDrawerToggle}>
         <List sx={{ width: 250 }}>
           {routesConfig.map((page) => (

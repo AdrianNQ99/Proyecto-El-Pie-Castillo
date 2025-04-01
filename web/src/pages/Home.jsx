@@ -4,29 +4,30 @@ import homeImage from '../assets/homeImage.jpg';
 
 const Home = () => {
   return (
-    <Container maxWidth="xl">
-      {/* Landing image */}
-      <Box 
-        className="hero" 
-        sx={{ 
-          position: 'relative', 
-          textAlign: 'center', 
-          borderRadius: 2, 
-          overflow: 'hidden', 
-          mb: 4 
+    <div>
+      {/* Hero Section */}
+      <Box
+        className="hero"
+        sx={{
+          position: 'relative',
+          textAlign: 'center',
+          borderRadius: 2,
+          overflow: 'hidden',
+          mb: 4,
         }}
       >
+        {/* Background Image */}
         <Box
           component="img"
           src={homeImage}
           alt="Chimenea El Pie Castillo"
-          sx={{ 
+          sx={{
             width: '100%',
-            height: '600px', 
-            objectFit: 'cover', 
-            filter: 'brightness(0.7)', 
+            objectFit: 'cover',
+            filter: 'brightness(0.7)',
           }}
         />
+        {/* Text Overlay */}
         <Box
           sx={{
             position: 'absolute',
@@ -46,47 +47,81 @@ const Home = () => {
         </Box>
       </Box>
 
-      {/* Menu*/}
-      <Box sx={{ py: 4 }}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Nuestro Menú Destacado
-        </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ p: 2, borderRadius: 2, textAlign: 'center', backgroundColor: '#b26500' }}>
-              <Typography variant="h6" component="h3">
-                Plato Especial 1
-              </Typography>
-              <Typography variant="body2">
-                Descripción breve del plato especial.
-              </Typography>
-            </Box>
+      {/* Menu Section */}
+      <Container maxWidth="lg" sx={{ mb: 4 }}>
+        <Box sx={{ py: 4 }}>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Nuestro Menú Destacado
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={4}>
+              <Box
+                sx={{
+                  p: 2,
+                  borderRadius: 2,
+                  textAlign: 'center',
+                  backgroundColor: '#b26500',
+                  color: '#fff',
+                }}
+              >
+                <Typography variant="h6" component="h3">
+                  Plato Especial 1
+                </Typography>
+                <Typography variant="body2">
+                  Descripción breve del plato especial.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box
+                sx={{
+                  p: 2,
+                  borderRadius: 2,
+                  textAlign: 'center',
+                  backgroundColor: '#b26500',
+                  color: '#fff',
+                }}
+              >
+                <Typography variant="h6" component="h3">
+                  Plato Especial 2
+                </Typography>
+                <Typography variant="body2">
+                  Descripción breve del plato especial.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box
+                sx={{
+                  p: 2,
+                  borderRadius: 2,
+                  textAlign: 'center',
+                  backgroundColor: '#b26500',
+                  color: '#fff',
+                }}
+              >
+                <Typography variant="h6" component="h3">
+                  Plato Especial 3
+                </Typography>
+                <Typography variant="body2">
+                  Descripción breve del plato especial.
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ p: 2, borderRadius: 2, textAlign: 'center', backgroundColor: '#b26500' }}>
-              <Typography variant="h6" component="h3">
-                Plato Especial 2
-              </Typography>
-              <Typography variant="body2">
-                Descripción breve del plato especial.
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ p: 2, borderRadius: 2, textAlign: 'center', backgroundColor: '#b26500' }}>
-              <Typography variant="h6" component="h3">
-                Plato Especial 3
-              </Typography>
-              <Typography variant="body2">
-                Descripción breve del plato especial.
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </Container>
 
       {/* Contact Section */}
-      <Box sx={{ py: 4, textAlign: 'center', backgroundColor: '#424242', borderRadius: 2 }}>
+      <Box
+        sx={{
+          py: 4,
+          textAlign: 'center',
+          backgroundColor: '#424242',
+          color: '#fff',
+          borderRadius: 2,
+        }}
+      >
         <Typography variant="h4" component="h2" gutterBottom>
           Contáctanos
         </Typography>
@@ -94,7 +129,7 @@ const Home = () => {
         <Typography variant="body1">Teléfono: +123 456 7890</Typography>
         <Typography variant="body1">Email: contacto@elpiedecastillo.com</Typography>
       </Box>
-    </Container>
+    </div>
   );
 };
 
