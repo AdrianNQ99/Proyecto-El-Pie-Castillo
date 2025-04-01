@@ -15,3 +15,8 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.landing {
+  text-align: center;
+  padding: 20px;
+}
