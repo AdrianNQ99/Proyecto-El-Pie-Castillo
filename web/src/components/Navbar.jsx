@@ -101,8 +101,14 @@ function ResponsiveAppBar() {
 
           {/* Social Icons */}
           <Box sx={{ display: "flex", gap: 1 }}>
-            <WhatsAppIcon />
-            <FacebookIcon />
+            <IconButton
+              color="inherit"
+              onClick={() =>
+                window.open("https://api.whatsapp.com/send/?phone=34675366784", "_blank")
+              }
+            >
+              <WhatsAppIcon />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

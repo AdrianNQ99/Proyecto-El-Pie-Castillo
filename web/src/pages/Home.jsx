@@ -1,6 +1,8 @@
-import React from "react";
-import { Container, Typography, Box, Grid } from "@mui/material";
+import { Container, Typography, Box, Grid, Card, CardMedia } from "@mui/material";
 import homeImage from "../assets/homeImage.jpg";
+import Croquetas from "../assets/Carta/Croquetas.jpg";
+import PaellaDeCostilla from "../assets/Carta/PaellaDeCostilla.jpg";
+import Crepes from "../assets/Carta/Crepes.jpg";
 
 const Home = () => {
   return (
@@ -56,7 +58,7 @@ const Home = () => {
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}>
-              <Box
+              <Card 
                 sx={{
                   p: 2,
                   borderRadius: 2,
@@ -65,16 +67,23 @@ const Home = () => {
                   color: "#fff",
                 }}
               >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={Croquetas}
+                  alt="Plato Especial"
+                  sx={{ borderRadius: 2 }}
+                />
                 <Typography variant="h6" component="h3">
-                  Plato Especial 1
+                  Croquetas Caseras
                 </Typography>
                 <Typography variant="body2">
-                  Descripción breve del plato especial.
+                  Cremosas y hechas a mano.
                 </Typography>
-              </Box>
+              </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Box
+              <Card 
                 sx={{
                   p: 2,
                   borderRadius: 2,
@@ -83,16 +92,23 @@ const Home = () => {
                   color: "#fff",
                 }}
               >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={PaellaDeCostilla}
+                  alt="Plato Especial"
+                  sx={{ borderRadius: 2 }}
+                />
                 <Typography variant="h6" component="h3">
-                  Plato Especial 2
+                  Paellas Por Encargo
                 </Typography>
                 <Typography variant="body2">
-                  Descripción breve del plato especial.
+                  Preparadas con ingredientes frescos y de calidad.
                 </Typography>
-              </Box>
+              </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Box
+              <Card
                 sx={{
                   p: 2,
                   borderRadius: 2,
@@ -101,13 +117,20 @@ const Home = () => {
                   color: "#fff",
                 }}
               >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={Crepes}
+                  alt="Plato Especial"
+                  sx={{ borderRadius: 2 }}
+                />
                 <Typography variant="h6" component="h3">
-                  Plato Especial 3
+                  Postres Caseros
                 </Typography>
                 <Typography variant="body2">
-                  Descripción breve del plato especial.
+                  Disfruta de nuestros deliciosos postres caseros.
                 </Typography>
-              </Box>
+              </Card>
             </Grid>
           </Grid>
         </Box>
@@ -127,11 +150,11 @@ const Home = () => {
           Contáctanos
         </Typography>
         <Typography variant="body1">
-          Dirección: Calle Principal #123, Ciudad
+          Dirección: Calle Doña Lina 16Bis
         </Typography>
-        <Typography variant="body1">Teléfono: +123 456 7890</Typography>
+        <Typography variant="body1">Teléfono: +34 675 366 784</Typography>
         <Typography variant="body1">
-          Email: contacto@elpiedecastillo.com
+          Email: elpiecastilloaguilas@gmail.com
         </Typography>
       </Box>
     </div>
