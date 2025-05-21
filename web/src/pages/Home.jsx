@@ -13,7 +13,6 @@ const Home = () => {
         sx={{
           position: "relative",
           textAlign: "center",
-          borderRadius: 3,
           overflow: "hidden",
           mb: 6,
           minHeight: { xs: "40vh", md: "60vh" },
