@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Card, Container, Typography, Grid } from "@mui/material";
+import { Container, Typography, Box, Grid, Card } from "@mui/material";
 import homeImage from "../assets/homeImage.jpg";
 
-const Booking = () => {
+const Reservas = () => {
   return (
     <>
       {/* Hero Section */}
@@ -11,9 +11,13 @@ const Booking = () => {
         sx={{
           position: "relative",
           textAlign: "center",
-          borderRadius: 2,
+          borderRadius: 3,
           overflow: "hidden",
-          mb: 4,
+          mb: 6,
+          minHeight: { xs: "40vh", md: "60vh" },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
@@ -22,112 +26,70 @@ const Booking = () => {
           alt="Chimenea El Pie Castillo"
           sx={{
             width: "100%",
-            maxHeight: "75vh",
+            height: "100%",
             objectFit: "cover",
-            filter: "brightness(0.7)",
+            filter: "brightness(0.5)",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 1,
           }}
         />
         <Box
           sx={{
-            mt: 2,
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            position: "relative",
+            zIndex: 2,
             color: "#fff",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.7)",
+            px: 3,
           }}
         >
-          <Typography
-            variant="h3"
-            component="h1"
-            gutterBottom
-            sx={{
-              fontSize: { xs: "1.8rem", md: "3rem" },
-              fontWeight: "bold",
-            }}
-          >
+          <Typography variant="h2" sx={{ fontWeight: 800, mb: 2 }}>
             Contacto y Reservas
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: { xs: "0.9rem", md: "1.2rem" },
-            }}
-          >
-            Para realizar una reserva, por favor contáctanos a través de nuestro
-            número de teléfono o correo electrónico.
+          <Typography variant="h5">
+            Reserva tu mesa o haz tu consulta. ¡Te esperamos!
           </Typography>
         </Box>
       </Box>
 
-      {/* Contact Information Section */}
+      {/* Información de contacto */}
       <Container maxWidth="lg" sx={{ mb: 4 }}>
-        <Typography
-          variant="h4"
-          component="h2"
-          gutterBottom
-          textAlign="center"
-          sx={{ mb: 4, fontWeight: "bold" }}
-        >
-          Información de Contacto
-        </Typography>
-        <Grid container spacing={4}>
-          {/* Dirección */}
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                p: 3,
-                textAlign: "center",
-                backgroundColor: "#f5f5f5",
-                boxShadow: 3,
-              }}
-            >
-              <Typography variant="h6" gutterBottom>
-                Dirección
-              </Typography>
-              <Typography variant="body1">
-                Calle Doña Lina, 16Bis
-                <br />
-                30880 Águilas (Murcia)
-              </Typography>
-            </Card>
+        <Box sx={{ py: 4 }}>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Información de Contacto
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <Card className="card">
+                <Typography variant="h6" gutterBottom>
+                  Dirección
+                </Typography>
+                <Typography variant="body1">
+                  Calle Doña Lina, 16Bis
+                  <br />
+                  30880 Águilas (Murcia)
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card className="card">
+                <Typography variant="h6" gutterBottom>
+                  Teléfono
+                </Typography>
+                <Typography variant="body1">675 366 784</Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card className="card">
+                <Typography variant="h6" gutterBottom>
+                  WhatsApp
+                </Typography>
+                <Typography variant="body1">675 366 784</Typography>
+              </Card>
+            </Grid>
           </Grid>
-
-          {/* Teléfono */}
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                p: 3,
-                textAlign: "center",
-                backgroundColor: "#f5f5f5",
-                boxShadow: 3,
-              }}
-            >
-              <Typography variant="h6" gutterBottom>
-                Teléfono
-              </Typography>
-              <Typography variant="body1">675 366 784</Typography>
-            </Card>
-          </Grid>
-
-          {/* WhatsApp */}
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                p: 3,
-                textAlign: "center",
-                backgroundColor: "#f5f5f5",
-                boxShadow: 3,
-              }}
-            >
-              <Typography variant="h6" gutterBottom>
-                WhatsApp
-              </Typography>
-              <Typography variant="body1">675 366 784</Typography>
-            </Card>
-          </Grid>
-        </Grid>
+        </Box>
       </Container>
 
       {/* Google Maps Section */}
@@ -166,4 +128,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default Reservas;

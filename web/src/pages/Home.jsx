@@ -13,9 +13,13 @@ const Home = () => {
         sx={{
           position: "relative",
           textAlign: "center",
-          borderRadius: 2,
+          borderRadius: 3,
           overflow: "hidden",
-          mb: 4,
+          mb: 6,
+          minHeight: { xs: "40vh", md: "60vh" },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
@@ -24,26 +28,28 @@ const Home = () => {
           alt="Chimenea El Pie Castillo"
           sx={{
             width: "100%",
-            maxHeight: "75vh",
+            height: "100%",
             objectFit: "cover",
-            filter: "brightness(0.7)",
+            filter: "brightness(0.5)",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 1,
           }}
         />
         <Box
           sx={{
-            mt: 2,
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            position: "relative",
+            zIndex: 2,
             color: "#fff",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.7)",
+            px: 3,
           }}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h2" sx={{ fontWeight: 800, mb: 2 }}>
             Bienvenidos a El Pie Castillo
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="h5">
             Disfruta de una experiencia gastronómica única en un ambiente
             acogedor.
           </Typography>
@@ -58,76 +64,97 @@ const Home = () => {
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}>
-              <Card 
+              <Card
+                className="card"
                 sx={{
-                  p: 2,
-                  borderRadius: 2,
+                  borderRadius: 3,
                   textAlign: "center",
-                  backgroundColor: "#b26500",
-                  color: "#fff",
+                  backgroundColor: "#fff",
+                  color: "var(--text-main)",
+                  boxShadow: 3,
+                  p: 3,
+                  transition: "box-shadow 0.3s, transform 0.3s",
+                  "&:hover": {
+                    boxShadow: 6,
+                    transform: "translateY(-4px) scale(1.02)",
+                  },
                 }}
               >
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="160"
                   image={Croquetas}
-                  alt="Plato Especial"
-                  sx={{ borderRadius: 2 }}
+                  alt="Croquetas Caseras"
+                  sx={{ borderRadius: 2, mb: 2 }}
                 />
-                <Typography variant="h6" component="h3">
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                   Croquetas Caseras
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Cremosas y hechas a mano.
                 </Typography>
               </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Card 
+              <Card
+                className="card"
                 sx={{
-                  p: 2,
-                  borderRadius: 2,
+                  borderRadius: 3,
                   textAlign: "center",
-                  backgroundColor: "#b26500",
-                  color: "#fff",
+                  backgroundColor: "#fff",
+                  color: "var(--text-main)",
+                  boxShadow: 3,
+                  p: 3,
+                  transition: "box-shadow 0.3s, transform 0.3s",
+                  "&:hover": {
+                    boxShadow: 6,
+                    transform: "translateY(-4px) scale(1.02)",
+                  },
                 }}
               >
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="160"
                   image={PaellaDeCostilla}
-                  alt="Plato Especial"
-                  sx={{ borderRadius: 2 }}
+                  alt="Paellas Por Encargo"
+                  sx={{ borderRadius: 2, mb: 2 }}
                 />
-                <Typography variant="h6" component="h3">
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                   Paellas Por Encargo
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Preparadas con ingredientes frescos y de calidad.
                 </Typography>
               </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Card
+                className="card"
                 sx={{
-                  p: 2,
-                  borderRadius: 2,
+                  borderRadius: 3,
                   textAlign: "center",
-                  backgroundColor: "#b26500",
-                  color: "#fff",
+                  backgroundColor: "#fff",
+                  color: "var(--text-main)",
+                  boxShadow: 3,
+                  p: 3,
+                  transition: "box-shadow 0.3s, transform 0.3s",
+                  "&:hover": {
+                    boxShadow: 6,
+                    transform: "translateY(-4px) scale(1.02)",
+                  },
                 }}
               >
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="160"
                   image={Crepes}
-                  alt="Plato Especial"
-                  sx={{ borderRadius: 2 }}
+                  alt="Postres Caseros"
+                  sx={{ borderRadius: 2, mb: 2 }}
                 />
-                <Typography variant="h6" component="h3">
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                   Postres Caseros
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Disfruta de nuestros deliciosos postres caseros.
                 </Typography>
               </Card>

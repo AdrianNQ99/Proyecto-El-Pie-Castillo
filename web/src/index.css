@@ -1,23 +1,71 @@
-body{
-  margin:0;
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: var(--background);
+  color: var(--text-main);
+  min-height: 100vh;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --primary: #b26500;
+  --primary-dark: #8a4b00;
+  --secondary: #424242;
+  --background: #f9f6f2;
+  --text-main: #222;
+  --text-light: #fff;
+  --card-radius: 18px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--primary-dark);
 }
 
 .landing {
   text-align: center;
   padding: 20px;
+}
+
+.card {
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: #fff;
+  transition: box-shadow var(--transition), transform var(--transition);
+  padding: 1.5rem;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+  transform: translateY(-4px) scale(1.01);
+}
+
+button, .MuiButton-root {
+  border-radius: 24px !important;
+  padding: 0.6em 2em !important;
+  font-weight: 600 !important;
+  background: var(--primary) !important;
+  color: var(--text-light) !important;
+  transition: background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(178,101,0,0.08);
+}
+button:hover, .MuiButton-root:hover {
+  background: var(--primary-dark) !important;
+}
+
+.MuiContainer-root {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #eee;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 8px;
 }
