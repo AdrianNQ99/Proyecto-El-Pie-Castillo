@@ -16,7 +16,6 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import FacebookIcon from "@mui/icons-material/Facebook";
 
 import { useNavigate } from "react-router";
 import { routesConfig } from "../routes/routesConfig";
