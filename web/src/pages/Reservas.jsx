@@ -54,37 +54,165 @@ const Reservas = () => {
 
       {/* Información de contacto */}
       <Container maxWidth="lg" sx={{ mb: 4 }}>
-        <Box sx={{ py: 4 }}>
+        <Box sx={{ textAlign:"center", py: 4 }}>
           <Typography variant="h4" component="h2" gutterBottom>
             Información de Contacto
           </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Card className="card">
-                <Typography variant="h6" gutterBottom>
+          <Grid container spacing={4} alignItems="stretch">
+            <Grid item xs={12} md={4} sx={{ display: "flex" }}>
+              <Card
+                className="card"
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: 220,
+                  py: 4,
+                  px: 3,
+                  textAlign: "center",
+                  boxShadow: 6,
+                  borderRadius: 4,
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                  bgcolor: "#faf9f6",
+                  "&:hover": {
+                    transform: "translateY(-8px) scale(1.03)",
+                    boxShadow: 12,
+                    bgcolor: "#fff",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 56,
+                    height: 56,
+                    mb: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "#ffe0b2",
+                    borderRadius: "50%",
+                  }}
+                >
+                  <span role="img" aria-label="Dirección" style={{ fontSize: 28 }}>📍</span>
+                </Box>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   Dirección
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontWeight: 500 }}>
                   Calle Doña Lina, 16Bis
-                  <br />
-                  30880 Águilas (Murcia)
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  30880 Águilas, Murcia
                 </Typography>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Card className="card">
-                <Typography variant="h6" gutterBottom>
+            <Grid item xs={12} md={4} sx={{ display: "flex" }}>
+              <Card
+                className="card"
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: 220,
+                  py: 4,
+                  px: 3,
+                  textAlign: "center",
+                  boxShadow: 6,
+                  borderRadius: 4,
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                  bgcolor: "#faf9f6",
+                  "&:hover": {
+                    transform: "translateY(-8px) scale(1.03)",
+                    boxShadow: 12,
+                    bgcolor: "#fff",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 56,
+                    height: 56,
+                    mb: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "#b2dfdb",
+                    borderRadius: "50%",
+                  }}
+                >
+                  <span role="img" aria-label="Teléfono" style={{ fontSize: 28 }}>📞</span>
+                </Box>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   Teléfono
                 </Typography>
-                <Typography variant="body1">675 366 784</Typography>
+                <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                  <a href="tel:675366784" style={{ color: "inherit", textDecoration: "none" }}>
+                    675 366 784
+                  </a>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Llama para reservar o consultar
+                </Typography>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Card className="card">
-                <Typography variant="h6" gutterBottom>
+            <Grid item xs={12} md={4} sx={{ display: "flex" }}>
+              <Card
+                className="card"
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: 220,
+                  py: 4,
+                  px: 3,
+                  textAlign: "center",
+                  boxShadow: 6,
+                  borderRadius: 4,
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                  bgcolor: "#faf9f6",
+                  "&:hover": {
+                    transform: "translateY(-8px) scale(1.03)",
+                    boxShadow: 12,
+                    bgcolor: "#fff",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 56,
+                    height: 56,
+                    mb: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "#c5cae9",
+                    borderRadius: "50%",
+                  }}
+                >
+                  <span role="img" aria-label="WhatsApp" style={{ fontSize: 28 }}>💬</span>
+                </Box>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   WhatsApp
                 </Typography>
-                <Typography variant="body1">675 366 784</Typography>
+                <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                  <a
+                    href="https://wa.me/34675366784"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    675 366 784
+                  </a>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Escríbenos por WhatsApp
+                </Typography>
               </Card>
             </Grid>
           </Grid>
