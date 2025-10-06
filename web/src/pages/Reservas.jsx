@@ -54,13 +54,14 @@ const Reservas = () => {
 
       {/* Información de contacto */}
       <Container maxWidth="lg" sx={{ mb: 4 }}>
-        <Box sx={{ textAlign:"center", py: 4 }}>
+        <Box sx={{ textAlign: "center", py: 4 }}>
           <Typography variant="h4" component="h2" gutterBottom>
             Información de Contacto
           </Typography>
-          <Grid container spacing={4} alignItems="stretch">
+          <Grid onclick container spacing={4} alignItems="stretch">
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
+                onClick={() => { window.open("https://maps.app.goo.gl/WYKeMsbStc6ErScGA", "_blank"); }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -110,6 +111,7 @@ const Reservas = () => {
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
+                onClick={() => { window.open("tel:675366784"); }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -150,9 +152,8 @@ const Reservas = () => {
                   Teléfono
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  <a href="tel:675366784" style={{ color: "inherit", textDecoration: "none" }}>
-                    675 366 784
-                  </a>
+                  675 366 784
+
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Llama para reservar o consultar
@@ -161,6 +162,7 @@ const Reservas = () => {
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
+                onClick={() => { window.open("https://wa.me/34675366784", "_blank"); }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -201,14 +203,7 @@ const Reservas = () => {
                   WhatsApp
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  <a
-                    href="https://wa.me/34675366784"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: "inherit", textDecoration: "none" }}
-                  >
-                    675 366 784
-                  </a>
+                  675 366 784
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Escríbenos por WhatsApp
