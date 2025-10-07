@@ -1,8 +1,11 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Enum
 from enum import Enum as PyEnum
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdb.db'
+db = SQLAlchemy(app)
 
 class Client(db.Model):
     __tablename__ = 'clients'
@@ -14,3 +17,10 @@ class Client(db.Model):
 
     def __repr__(self):
         return f'<Client {self.name}>'
+
+@app.route('/health')
+def health():
+    return {"status": "ok"}, 200
+
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
