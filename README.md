@@ -17,7 +17,7 @@ A web project for the restaurant **El Pie Castillo** located in Águilas, Murcia
 - Node.js (v16 or higher recommended)
 - npm or yarn
 
-### Installation
+### FrontEnd Installation
 
 1. Clone the repository:
    ```
@@ -31,23 +31,28 @@ A web project for the restaurant **El Pie Castillo** located in Águilas, Murcia
    ```
    npm install
    ```
-   or
+
+### Running the Project
+
+```
+npm run dev
+```
+### BackEnd Installation
+
+1. Navigate to the project folder:
    ```
-   yarn install
+   cd proyecto-el-pie-castillo/backend
+   ```
+3. Install dependencies:
+   ```
+   pip install pipenv
    ```
 
 ### Running the Project
 
 ```
-npm start
+pipenv run start
 ```
-or
-```
-yarn start
-```
-
-The app will be available at [http://localhost:3000](http://localhost:3000).
-
 ## Project Structure
 
 - `/src/pages` — Main pages (Home, Reservas, About, etc.)
@@ -58,7 +63,3 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 
 - Update restaurant info in `/src/pages/Reservas.jsx`
 - Change images in `/src/assets/`
-
-## License
-
-This project is for educational and demonstration purposes.
