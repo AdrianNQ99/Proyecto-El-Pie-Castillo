@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Montserrat', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
   background: var(--background);
   color: var(--text-main);
   min-height: 100vh;
@@ -14,7 +14,7 @@ body {
   --text-main: #222;
   --text-light: #fff;
   --card-radius: 18px;
-  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a {
@@ -33,26 +33,32 @@ a:hover {
 
 .card {
   border-radius: var(--card-radius);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   background: #fff;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
   padding: 1.5rem;
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
   transform: translateY(-4px) scale(1.01);
 }
 
-button, .MuiButton-root {
+button,
+.MuiButton-root {
   border-radius: 24px !important;
   padding: 0.6em 2em !important;
   font-weight: 600 !important;
   background: var(--primary) !important;
   color: var(--text-light) !important;
-  transition: background var(--transition), box-shadow var(--transition);
-  box-shadow: 0 2px 8px rgba(178,101,0,0.08);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(178, 101, 0, 0.08);
 }
-button:hover, .MuiButton-root:hover {
+button:hover,
+.MuiButton-root:hover {
   background: var(--primary-dark) !important;
 }
 

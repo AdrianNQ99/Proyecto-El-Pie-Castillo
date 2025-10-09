@@ -86,7 +86,9 @@ function ResponsiveAppBar() {
           </Typography>
 
           {/* Desktop Navigation */}
-          <Box sx={{ flexGrow: 1, gap: 2, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ flexGrow: 1, gap: 2, display: { xs: "none", md: "flex" } }}
+          >
             {routesConfig.map((page) => (
               <Button
                 key={page.name}
@@ -103,7 +105,10 @@ function ResponsiveAppBar() {
             <IconButton
               color="inherit"
               onClick={() =>
-                window.open("https://api.whatsapp.com/send/?phone=34675366784", "_blank")
+                window.open(
+                  "https://api.whatsapp.com/send/?phone=34675366784",
+                  "_blank",
+                )
               }
             >
               <WhatsAppIcon />

@@ -11,7 +11,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {routesConfig.map((route) => {
-          return <Route key={route.name} path={route.path} element={route.component} />;
+          return (
+            <Route
+              key={route.name}
+              path={route.path}
+              element={route.component}
+            />
+          );
         })}
       </Routes>
     </>

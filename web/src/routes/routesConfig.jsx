@@ -1,4 +1,5 @@
-import Menu from "../pages/Carta";import Booking from "../pages/Reservas";
+import Menu from "../pages/Carta";
+import Booking from "../pages/Reservas";
 import Home from "../pages/Home";
 
 export const routesConfig = [
@@ -17,5 +18,4 @@ export const routesConfig = [
     path: "/booking",
     component: <Booking />,
   },
- 
 ];

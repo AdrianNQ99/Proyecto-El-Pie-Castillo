@@ -61,7 +61,12 @@ const Reservas = () => {
           <Grid onclick container spacing={4} alignItems="stretch">
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
-                onClick={() => { window.open("https://maps.app.goo.gl/WYKeMsbStc6ErScGA", "_blank"); }}
+                onClick={() => {
+                  window.open(
+                    "https://maps.app.goo.gl/WYKeMsbStc6ErScGA",
+                    "_blank",
+                  );
+                }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -96,7 +101,13 @@ const Reservas = () => {
                     borderRadius: "50%",
                   }}
                 >
-                  <span role="img" aria-label="Dirección" style={{ fontSize: 28 }}>📍</span>
+                  <span
+                    role="img"
+                    aria-label="Dirección"
+                    style={{ fontSize: 28 }}
+                  >
+                    📍
+                  </span>
                 </Box>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   Dirección
@@ -111,7 +122,9 @@ const Reservas = () => {
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
-                onClick={() => { window.open("tel:675366784"); }}
+                onClick={() => {
+                  window.open("tel:675366784");
+                }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -146,14 +159,19 @@ const Reservas = () => {
                     borderRadius: "50%",
                   }}
                 >
-                  <span role="img" aria-label="Teléfono" style={{ fontSize: 28 }}>📞</span>
+                  <span
+                    role="img"
+                    aria-label="Teléfono"
+                    style={{ fontSize: 28 }}
+                  >
+                    📞
+                  </span>
                 </Box>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   Teléfono
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 500 }}>
                   675 366 784
-
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Llama para reservar o consultar
@@ -162,7 +180,9 @@ const Reservas = () => {
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: "flex" }}>
               <Card
-                onClick={() => { window.open("https://wa.me/34675366784", "_blank"); }}
+                onClick={() => {
+                  window.open("https://wa.me/34675366784", "_blank");
+                }}
                 className="card"
                 sx={{
                   flex: 1,
@@ -197,7 +217,13 @@ const Reservas = () => {
                     borderRadius: "50%",
                   }}
                 >
-                  <span role="img" aria-label="WhatsApp" style={{ fontSize: 28 }}>💬</span>
+                  <span
+                    role="img"
+                    aria-label="WhatsApp"
+                    style={{ fontSize: 28 }}
+                  >
+                    💬
+                  </span>
                 </Box>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
                   WhatsApp

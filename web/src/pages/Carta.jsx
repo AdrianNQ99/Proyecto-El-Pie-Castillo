@@ -1,4 +1,11 @@
-import { Typography, Box, Card, CardContent, Container, Grid } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+} from "@mui/material";
 import homeImage from "../assets/homeImage.jpg";
 import Carta from "../Api/Carta.js";
 
@@ -8,7 +15,12 @@ const Section = ({ title, items }) => (
       variant="h4"
       component="h2"
       gutterBottom
-      sx={{ textAlign: "center", mb: 4, fontWeight: 700, color: "var(--primary)" }}
+      sx={{
+        textAlign: "center",
+        mb: 4,
+        fontWeight: 700,
+        color: "var(--primary)",
+      }}
     >
       {title}
     </Typography>
@@ -32,13 +44,22 @@ const Section = ({ title, items }) => (
             }}
           >
             <CardContent>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: "var(--primary-dark)" }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, color: "var(--primary-dark)" }}
+              >
                 {plato.nombre.es}
               </Typography>
-              <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "text.secondary", mb: 2 }}
+              >
                 {plato.descripcion.es}
               </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 600, color: "var(--secondary)" }}>
+              <Typography
+                variant="body1"
+                sx={{ fontWeight: 600, color: "var(--secondary)" }}
+              >
                 {plato.precio}
               </Typography>
             </CardContent>
@@ -64,7 +85,6 @@ const Menu = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-         
         }}
       >
         <Box
@@ -95,7 +115,8 @@ const Menu = () => {
             Nuestro Menú
           </Typography>
           <Typography variant="h5">
-            Disfruta de una experiencia gastronómica única en un ambiente acogedor.
+            Disfruta de una experiencia gastronómica única en un ambiente
+            acogedor.
           </Typography>
         </Box>
       </Box>
