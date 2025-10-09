@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey, Enum
+from sqlalchemy import ForeignKey
 from enum import Enum as PyEnum
 
 app = Flask(__name__)
@@ -26,22 +26,10 @@ class Client(db.Model):
     def __repr__(self):
         return f'<Client {self.name}>'
     
-class Table(db.Model):
-    __tablename__ = 'tables'
-    id = db.Column(db.Integer, primary_key=True)
-    number = db.Column(db.Integer, unique=True, nullable=False)
-    capacity = db.Column(db.Integer, nullable=False)
-    status = db.Column(Enum(TableStatus), default=TableStatus.AVAILABLE, nullable=False)
-    reservations = db.relationship('Reservation', backref='table', lazy=True)
-
-    def __repr__(self):
-        return f'<Table {self.number} - {self.status.value}>'
-    
 class Reservation(db.Model):
     __tablename__ = 'reservations'
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, ForeignKey('clients.id'), nullable=False)
-    table_id = db.Column(db.Integer, ForeignKey('tables.id'), nullable=False)
     reservation_time = db.Column(db.DateTime, nullable=False)
     number_of_people = db.Column(db.Integer, nullable=False)
 
