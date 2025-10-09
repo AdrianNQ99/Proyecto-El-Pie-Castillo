@@ -57,7 +57,7 @@ def get_client(client_id):
         "phone": client.phone
     }), 200
 
-@app.route("/clients/int", methods=["POST"])
+@app.route("/clients/", methods=["POST"])
 def create_client():
     from flask import request
     data = request.get_json()
