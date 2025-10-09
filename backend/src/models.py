@@ -7,6 +7,14 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdb.db'
 db = SQLAlchemy(app)
 
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
+
+class TableStatus(PyEnum):
+    AVAILABLE = "available"
+    RESERVED = "reserved"
+    OCCUPIED = "occupied"
+
 class Client(db.Model):
     __tablename__ = 'clients'
     id = db.Column(db.Integer, primary_key=True)
@@ -17,10 +25,38 @@ class Client(db.Model):
 
     def __repr__(self):
         return f'<Client {self.name}>'
+    
+class Table(db.Model):
+    __tablename__ = 'tables'
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer, unique=True, nullable=False)
+    capacity = db.Column(db.Integer, nullable=False)
+    status = db.Column(Enum(TableStatus), default=TableStatus.AVAILABLE, nullable=False)
+    reservations = db.relationship('Reservation', backref='table', lazy=True)
 
-@app.route('/health')
-def health():
-    return {"status": "ok"}, 200
+    def __repr__(self):
+        return f'<Table {self.number} - {self.status.value}>'
+    
+class Reservation(db.Model):
+    __tablename__ = 'reservations'
+    id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.Integer, ForeignKey('clients.id'), nullable=False)
+    table_id = db.Column(db.Integer, ForeignKey('tables.id'), nullable=False)
+    reservation_time = db.Column(db.DateTime, nullable=False)
+    number_of_people = db.Column(db.Integer, nullable=False)
 
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    def __repr__(self):
+        return f'<Reservation {self.id} for Client {self.client_id} at Table {self.table_id}>'
+    
+class MenuItem(db.Model):
+    __tablename__ = 'menu_items'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255), nullable=True)
+    price = db.Column(db.Float, nullable=False)
+    image_url = db.Column(db.String(255), nullable=True)
+
+    def __repr__(self):
+        return f'<MenuItem {self.name} - ${self.price}>'
+    
+    
