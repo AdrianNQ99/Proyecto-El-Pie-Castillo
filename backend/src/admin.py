@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from src.models import db # Import models
+from models import db, Client, Reservation, MenuItem
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.orm.properties import RelationshipProperty
 
@@ -20,4 +20,6 @@ def setup_admin(app):
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     admin = Admin(app, name='4Geeks Admin', template_mode='bootstrap3')
 
-    # Add models when they are defined 
+    admin.add_view(AdminView(Client, db.session))
+    admin.add_view(AdminView(Reservation, db.session))
+    admin.add_view(AdminView(MenuItem, db.session))

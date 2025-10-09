@@ -8,6 +8,7 @@ from flask import Flask, jsonify, request
 from flask_migrate import Migrate
 from flask_cors import CORS
 
+from admin import setup_admin
 from models import db, Client, Reservation, MenuItem
 from utils import generate_sitemap
 
@@ -20,6 +21,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
+setup_admin(app)
 
 start_time = time.time()
 
