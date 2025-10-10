@@ -10,36 +10,44 @@ db = SQLAlchemy(app)
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
 
-class Client(db.Model):
-    __tablename__ = "clients"
+class SeccionCarta(PyEnum):
+    ParaCompartir = "Para Compartir"
+    PlatosTipicosFranceses = "Platos Típicos Franceses"
+    AlHorno = "Al Horno"
+    PorEncargo = "Por Encargo"
+    Carnes = "Carnes"
+    Pescados = "Pescados"
+    PostresCaseros = "Postres Caseros"
+
+class Cliente(db.Model):
+    __tablename__ = "clientes"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    phone = db.Column(db.String(20), nullable=True)
-    reservations = db.relationship("Reservation", backref="client", lazy=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    correo = db.Column(db.String(120), unique=True, nullable=False)
+    telefono = db.Column(db.String(20), nullable=True)
+    reservas = db.relationship("Reserva", backref="cliente", lazy=True)
 
     def __repr__(self):
-        return f"<Client {self.name}>"
+        return f"<Cliente {self.nombre}>"
 
-
-class Reservation(db.Model):
-    __tablename__ = "reservations"
+class Reserva(db.Model):
+    __tablename__ = "reservas"
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, ForeignKey("clients.id"), nullable=False)
-    reservation_time = db.Column(db.DateTime, nullable=False)
-    number_of_people = db.Column(db.Integer, nullable=False)
+    cliente_id = db.Column(db.Integer, ForeignKey("clientes.id"), nullable=False)
+    fecha_hora = db.Column(db.DateTime, nullable=False)
+    numero_personas = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"<Reservation {self.id} for Client {self.client_id} at Table {self.table_id}>"
+        return f"<Reserva {self.id} para Cliente {self.cliente_id}>"
 
-
-class MenuItem(db.Model):
-    __tablename__ = "menu_items"
+class PlatoCarta(db.Model):
+    __tablename__ = "platos_carta"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255), nullable=True)
-    price = db.Column(db.Float, nullable=False)
-    image_url = db.Column(db.String(255), nullable=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    descripcion = db.Column(db.String(255), nullable=True)
+    precio = db.Column(db.Float, nullable=False)
+    imagen_url = db.Column(db.String(255), nullable=True)
+    seccion = db.Column(db.Enum(SeccionCarta), nullable=False)
 
     def __repr__(self):
-        return f"<MenuItem {self.name} - ${self.price}>"
+        return f"<PlatoCarta {self.nombre} - ${self.precio}>"

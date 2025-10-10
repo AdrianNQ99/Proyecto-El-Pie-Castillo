@@ -1,18 +1,15 @@
 import sys
 import os
+import time
 
 import cloudinary
-import cloudinary.uploader
-from cloudinary.utils import cloudinary_url
-
-import time
 
 from flask import Flask, jsonify, request
 from flask_migrate import Migrate
 from flask_cors import CORS
 
 from admin import setup_admin
-from models import db, Client, Reservation, MenuItem
+from models import db, Cliente, Reserva, PlatoCarta, SeccionCarta
 from utils import generate_sitemap
 
 app = Flask(__name__)
@@ -44,155 +41,158 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=True)
 
 
-# clients routes
-@app.route("/clients", methods=["GET"])
-def get_clients():
-    clients = Client.query.all()
+# Rutas de clientes
+@app.route("/clientes", methods=["GET"])
+def get_clientes():
+    clientes = Cliente.query.all()
     return (
         jsonify(
             [
                 {
-                    "id": client.id,
-                    "name": client.name,
-                    "email": client.email,
-                    "phone": client.phone,
+                    "id": cliente.id,
+                    "nombre": cliente.nombre,
+                    "correo": cliente.correo,
+                    "telefono": cliente.telefono,
                 }
-                for client in clients
+                for cliente in clientes
             ]
         ),
         200,
     )
 
 
-@app.route("/clients/<int:client_id>", methods=["GET"])
-def get_client(client_id):
-    client = Client.query.get_or_404(client_id)
+@app.route("/clientes/<int:cliente_id>", methods=["GET"])
+def get_cliente(cliente_id):
+    cliente = Cliente.query.get_or_404(cliente_id)
     return (
         jsonify(
             {
-                "id": client.id,
-                "name": client.name,
-                "email": client.email,
-                "phone": client.phone,
+                "id": cliente.id,
+                "nombre": cliente.nombre,
+                "correo": cliente.correo,
+                "telefono": cliente.telefono,
             }
         ),
         200,
     )
 
 
-@app.route("/clients/", methods=["POST"])
-def create_client():
-    from flask import request
-
+@app.route("/clientes", methods=["POST"])
+def create_cliente():
     data = request.get_json()
-    new_client = Client(
-        name=data.get("name"), email=data.get("email"), phone=data.get("phone")
+    nuevo_cliente = Cliente(
+        nombre=data.get("nombre"),
+        correo=data.get("correo"),
+        telefono=data.get("telefono"),
     )
-    db.session.add(new_client)
+    db.session.add(nuevo_cliente)
     db.session.commit()
     return (
         jsonify(
             {
-                "id": new_client.id,
-                "name": new_client.name,
-                "email": new_client.email,
-                "phone": new_client.phone,
+                "id": nuevo_cliente.id,
+                "nombre": nuevo_cliente.nombre,
+                "correo": nuevo_cliente.correo,
+                "telefono": nuevo_cliente.telefono,
             }
         ),
         201,
     )
 
 
-# reservations routes
-@app.route("/reservations", methods=["GET"])
-def get_reservations():
-    reservations = Reservation.query.all()
+# Rutas de reservas
+@app.route("/reservas", methods=["GET"])
+def get_reservas():
+    reservas = Reserva.query.all()
     return (
         jsonify(
             [
                 {
-                    "id": reservation.id,
-                    "client_id": reservation.client_id,
-                    "reservation_time": reservation.reservation_time.isoformat(),
-                    "number_of_people": reservation.number_of_people,
+                    "id": reserva.id,
+                    "cliente_id": reserva.cliente_id,
+                    "fecha_hora": reserva.fecha_hora.isoformat(),
+                    "numero_personas": reserva.numero_personas,
                 }
-                for reservation in reservations
+                for reserva in reservas
             ]
         ),
         200,
     )
 
 
-@app.route("/reservations", methods=["POST"])
-def create_reservation():
+@app.route("/reservas", methods=["POST"])
+def create_reserva():
     data = request.get_json()
-    new_reservation = Reservation(
-        client_id=data.get("client_id"),
-        table_id=data.get("table_id"),
-        reservation_time=data.get("reservation_time"),
-        number_of_people=data.get("number_of_people"),
+    nueva_reserva = Reserva(
+        cliente_id=data.get("cliente_id"),
+        fecha_hora=data.get("fecha_hora"),
+        numero_personas=data.get("numero_personas"),
     )
-    db.session.add(new_reservation)
+    db.session.add(nueva_reserva)
     db.session.commit()
     return (
         jsonify(
             {
-                "id": new_reservation.id,
-                "client_id": new_reservation.client_id,
-                "reservation_time": new_reservation.reservation_time.isoformat(),
-                "number_of_people": new_reservation.number_of_people,
+                "id": nueva_reserva.id,
+                "cliente_id": nueva_reserva.cliente_id,
+                "fecha_hora": nueva_reserva.fecha_hora.isoformat(),
+                "numero_personas": nueva_reserva.numero_personas,
             }
         ),
         201,
     )
 
 
-# menu items routes
-@app.route("/menu_items>", methods=["POST"])
-def create_menu_item():
-    data = request.get_json()
-    new_menu_item = MenuItem(
-        name=data.get("name"),
-        description=data.get("description"),
-        price=data.get("price"),
-        image_url=data.get("image_url"),
-    )
-    db.session.add(new_menu_item)
-    db.session.commit()
-    return (
-        jsonify(
-            {
-                "id": new_menu_item.id,
-                "name": new_menu_item.name,
-                "description": new_menu_item.description,
-                "price": new_menu_item.price,
-                "image_url": new_menu_item.image_url,
-            }
-        ),
-        201,
-    )
-
-
-@app.route("/menu_items", methods=["GET"])
-def get_menu_items():
-    menu_items = MenuItem.query.all()
+# Rutas de platos de la carta
+@app.route("/platos_carta", methods=["GET"])
+def get_platos_carta():
+    platos = PlatoCarta.query.all()
     return (
         jsonify(
             [
                 {
-                    "id": item.id,
-                    "name": item.name,
-                    "description": item.description,
-                    "price": item.price,
-                    "image_url": item.image_url,
+                    "id": plato.id,
+                    "nombre": plato.nombre,
+                    "descripcion": plato.descripcion,
+                    "precio": plato.precio,
+                    "imagen_url": plato.imagen_url,
+                    "seccion": plato.seccion.value,
                 }
-                for item in menu_items
+                for plato in platos
             ]
         ),
         200,
     )
 
-# Cloudinary configuration
+
+@app.route("/platos_carta", methods=["POST"])
+def create_plato_carta():
+    data = request.get_json()
+    nuevo_plato = PlatoCarta(
+        nombre=data.get("nombre"),
+        descripcion=data.get("descripcion"),
+        precio=data.get("precio"),
+        imagen_url=data.get("imagen_url"),
+        seccion=SeccionCarta[data.get("seccion")],
+    )
+    db.session.add(nuevo_plato)
+    db.session.commit()
+    return (
+        jsonify(
+            {
+                "id": nuevo_plato.id,
+                "nombre": nuevo_plato.nombre,
+                "descripcion": nuevo_plato.descripcion,
+                "precio": nuevo_plato.precio,
+                "imagen_url": nuevo_plato.imagen_url,
+                "seccion": nuevo_plato.seccion.value,
+            }
+        ),
+        201,
+    )
+
+
+# Configuración de Cloudinary
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
     api_key=os.getenv("CLOUDINARY_API_KEY"),
