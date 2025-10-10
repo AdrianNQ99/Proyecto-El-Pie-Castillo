@@ -10,13 +10,6 @@ db = SQLAlchemy(app)
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
 
-
-class TableStatus(PyEnum):
-    AVAILABLE = "available"
-    RESERVED = "reserved"
-    OCCUPIED = "occupied"
-
-
 class Client(db.Model):
     __tablename__ = "clients"
     id = db.Column(db.Integer, primary_key=True)

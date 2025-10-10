@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import homeImage from "../assets/homeImage.jpg";
 import Carta from "../Api/Carta.js";
+import { useEffect, useState } from "react";
+import { baseUrl } from "../Api/FetchApi.js";
 
 const Section = ({ title, items }) => (
   <Box sx={{ mb: 6 }}>
@@ -71,6 +73,19 @@ const Section = ({ title, items }) => (
 );
 
 const Menu = () => {
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`${baseUrl}/menu_items`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMenuItems(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching menu items:", error);
+      });
+    document.title = "El Pie Castillo - Carta";
+  }, []);
   return (
     <>
       {/* Hero Section */}
