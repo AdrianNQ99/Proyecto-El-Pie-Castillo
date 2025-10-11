@@ -4,7 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
 flask-admin = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-cors = "*"
+wtforms = "<3.0"
 cloudinary = "*"
 
 [dev-packages]
