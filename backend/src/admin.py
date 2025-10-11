@@ -1,8 +1,7 @@
 import os
 from flask_admin import Admin
-from models import db, Cliente, Reserva, PlatoCarta, SeccionCarta
+from models import db, Reserva, PlatoCarta, SeccionCarta
 from flask_admin.contrib.sqla import ModelView
-from sqlalchemy.orm.properties import RelationshipProperty
 from wtforms import SelectField
 
 
@@ -28,6 +27,5 @@ def setup_admin(app):
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin = Admin(app, name="El Pie Castillo Admin", template_mode="bootstrap3")
 
-    admin.add_view(AdminView(Cliente, db.session))
     admin.add_view(AdminView(Reserva, db.session))
     admin.add_view(PlatoCartaAdmin(PlatoCarta, db.session))

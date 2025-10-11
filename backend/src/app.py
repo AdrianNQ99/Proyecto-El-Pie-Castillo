@@ -9,7 +9,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 
 from admin import setup_admin
-from models import db, Cliente, Reserva, PlatoCarta, SeccionCarta
+from models import db, Reserva, PlatoCarta, SeccionCarta
 from utils import generate_sitemap
 
 app = Flask(__name__)
@@ -40,66 +40,6 @@ if __name__ == "__main__":
     PORT = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=PORT, debug=True)
 
-
-# Rutas de clientes
-@app.route("/clientes", methods=["GET"])
-def get_clientes():
-    clientes = Cliente.query.all()
-    return (
-        jsonify(
-            [
-                {
-                    "id": cliente.id,
-                    "nombre": cliente.nombre,
-                    "correo": cliente.correo,
-                    "telefono": cliente.telefono,
-                }
-                for cliente in clientes
-            ]
-        ),
-        200,
-    )
-
-
-@app.route("/clientes/<int:cliente_id>", methods=["GET"])
-def get_cliente(cliente_id):
-    cliente = Cliente.query.get_or_404(cliente_id)
-    return (
-        jsonify(
-            {
-                "id": cliente.id,
-                "nombre": cliente.nombre,
-                "correo": cliente.correo,
-                "telefono": cliente.telefono,
-            }
-        ),
-        200,
-    )
-
-
-@app.route("/clientes", methods=["POST"])
-def create_cliente():
-    data = request.get_json()
-    nuevo_cliente = Cliente(
-        nombre=data.get("nombre"),
-        correo=data.get("correo"),
-        telefono=data.get("telefono"),
-    )
-    db.session.add(nuevo_cliente)
-    db.session.commit()
-    return (
-        jsonify(
-            {
-                "id": nuevo_cliente.id,
-                "nombre": nuevo_cliente.nombre,
-                "correo": nuevo_cliente.correo,
-                "telefono": nuevo_cliente.telefono,
-            }
-        ),
-        201,
-    )
-
-
 # Rutas de reservas
 @app.route("/reservas", methods=["GET"])
 def get_reservas():
@@ -109,7 +49,7 @@ def get_reservas():
             [
                 {
                     "id": reserva.id,
-                    "cliente_id": reserva.cliente_id,
+                    "nombre_cliente": reserva.nombre_cliente,
                     "fecha_hora": reserva.fecha_hora.isoformat(),
                     "numero_personas": reserva.numero_personas,
                 }
@@ -124,7 +64,7 @@ def get_reservas():
 def create_reserva():
     data = request.get_json()
     nueva_reserva = Reserva(
-        cliente_id=data.get("cliente_id"),
+        nombre_cliente=data.get("nombre_cliente"),
         fecha_hora=data.get("fecha_hora"),
         numero_personas=data.get("numero_personas"),
     )
@@ -134,7 +74,7 @@ def create_reserva():
         jsonify(
             {
                 "id": nueva_reserva.id,
-                "cliente_id": nueva_reserva.cliente_id,
+                "nombre_cliente": nueva_reserva.nombre_cliente,
                 "fecha_hora": nueva_reserva.fecha_hora.isoformat(),
                 "numero_personas": nueva_reserva.numero_personas,
             }

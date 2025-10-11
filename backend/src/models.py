@@ -1,14 +1,7 @@
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
 from enum import Enum as PyEnum
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///yourdb.db"
-db = SQLAlchemy(app)
-
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+db = SQLAlchemy()
 
 class SeccionCarta(PyEnum):
     ParaCompartir = "Para Compartir"
@@ -19,26 +12,15 @@ class SeccionCarta(PyEnum):
     Pescados = "Pescados"
     PostresCaseros = "Postres Caseros"
 
-class Cliente(db.Model):
-    __tablename__ = "clientes"
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(50), nullable=False)
-    correo = db.Column(db.String(120), unique=True, nullable=False)
-    telefono = db.Column(db.String(20), nullable=True)
-    reservas = db.relationship("Reserva", backref="cliente", lazy=True)
-
-    def __repr__(self):
-        return f"<Cliente {self.nombre}>"
-
 class Reserva(db.Model):
     __tablename__ = "reservas"
     id = db.Column(db.Integer, primary_key=True)
-    cliente_id = db.Column(db.Integer, ForeignKey("clientes.id"), nullable=False)
+    nombre_cliente = db.Column(db.String(100), nullable=False)
     fecha_hora = db.Column(db.DateTime, nullable=False)
     numero_personas = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"<Reserva {self.id} para Cliente {self.cliente_id}>"
+        return f"<Reserva {self.id} para {self.nombre_cliente} el {self.fecha_hora}>"
 
 class PlatoCarta(db.Model):
     __tablename__ = "platos_carta"
