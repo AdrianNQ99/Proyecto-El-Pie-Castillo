@@ -152,7 +152,6 @@ const Menu = () => {
     };
 
     fetchMenuItems();
-    document.title = "El Pie Castillo - Carta";
   }, []);
 
   if (loading) {
