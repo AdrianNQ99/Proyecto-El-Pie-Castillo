@@ -1,10 +1,124 @@
-import React from "react";
-import { Container, Typography, Box, Grid, Card } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Card,
+  TextField,
+  Button,
+  Paper,
+  Alert,
+  CircularProgress,
+  Snackbar,
+} from "@mui/material";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
+import "dayjs/locale/es";
 import homeImage from "../assets/homeImage.jpg";
+import { baseUrl } from "../Api/FetchApi.js";
 
 const Reservas = () => {
+  // Estados del formulario
+  const [formData, setFormData] = useState({
+    nombre_cliente: "",
+    fecha: null,
+    hora: null,
+    numero_personas: 1,
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Configurar dayjs para español
+  dayjs.locale("es");
+
+  const handleInputChange = (field) => (event) => {
+    setFormData({
+      ...formData,
+      [field]: event.target.value,
+    });
+  };
+
+  const handleDateChange = (newDate) => {
+    setFormData({
+      ...formData,
+      fecha: newDate,
+    });
+  };
+
+  const handleTimeChange = (newTime) => {
+    setFormData({
+      ...formData,
+      hora: newTime,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      !formData.nombre_cliente ||
+      !formData.fecha ||
+      !formData.hora ||
+      !formData.numero_personas
+    ) {
+      setErrorMessage("Por favor, completa todos los campos");
+      setShowError(true);
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Combinar fecha y hora
+      const fechaHora = formData.fecha
+        .hour(formData.hora.hour())
+        .minute(formData.hora.minute())
+        .second(0);
+
+      const reservaData = {
+        nombre_cliente: formData.nombre_cliente,
+        fecha_hora: fechaHora.toISOString(),
+        numero_personas: parseInt(formData.numero_personas),
+      };
+
+      const response = await fetch(`${baseUrl}/reservas`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reservaData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+
+      // Limpiar formulario
+      setFormData({
+        nombre_cliente: "",
+        fecha: null,
+        hora: null,
+        numero_personas: 1,
+      });
+
+      setShowSuccess(true);
+    } catch (error) {
+      console.error("Error al crear reserva:", error);
+      setErrorMessage(`Error al crear la reserva: ${error.message}`);
+      setShowError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
       {/* Hero Section */}
       <Box
         className="hero"
@@ -64,7 +178,7 @@ const Reservas = () => {
                 onClick={() => {
                   window.open(
                     "https://maps.app.goo.gl/WYKeMsbStc6ErScGA",
-                    "_blank",
+                    "_blank"
                   );
                 }}
                 className="card"
@@ -240,6 +354,146 @@ const Reservas = () => {
         </Box>
       </Container>
 
+      {/* Formulario de Reservas */}
+      <Container maxWidth="md" sx={{ mb: 6 }}>
+        <Paper
+          elevation={6}
+          sx={{
+            p: 4,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="h2"
+            gutterBottom
+            textAlign="center"
+            sx={{ mb: 4, fontWeight: "bold", color: "var(--primary)" }}
+          >
+            Hacer una Reserva
+          </Typography>
+
+          <Box component="form" onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Nombre completo"
+                  variant="outlined"
+                  value={formData.nombre_cliente}
+                  onChange={handleInputChange("nombre_cliente")}
+                  required
+                  sx={{ bgcolor: "white", borderRadius: 1 }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Número de personas"
+                  type="number"
+                  variant="outlined"
+                  value={formData.numero_personas}
+                  onChange={handleInputChange("numero_personas")}
+                  inputProps={{ min: 1, max: 20 }}
+                  required
+                  sx={{ bgcolor: "white", borderRadius: 1 }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <DatePicker
+                  label="Fecha de reserva"
+                  value={formData.fecha}
+                  onChange={handleDateChange}
+                  minDate={dayjs()}
+                  maxDate={dayjs().add(3, "month")}
+                  sx={{
+                    width: "100%",
+                    bgcolor: "white",
+                    borderRadius: 1,
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 1,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TimePicker
+                  label="Hora de reserva"
+                  value={formData.hora}
+                  onChange={handleTimeChange}
+                  minTime={dayjs().hour(12).minute(0)}
+                  maxTime={dayjs().hour(23).minute(30)}
+                  sx={{
+                    width: "100%",
+                    bgcolor: "white",
+                    borderRadius: 1,
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 1,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Box sx={{ textAlign: "center", mt: 2 }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    disabled={loading}
+                    sx={{
+                      px: 4,
+                      py: 1.5,
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                      borderRadius: 2,
+                      background:
+                        "linear-gradient(45deg, var(--primary) 30%, var(--secondary) 90%)",
+                      boxShadow: 3,
+                      "&:hover": {
+                        background:
+                          "linear-gradient(45deg, var(--primary-dark) 30%, var(--secondary-dark) 90%)",
+                        transform: "translateY(-2px)",
+                        boxShadow: 6,
+                      },
+                      "&:disabled": {
+                        background: "#ccc",
+                      },
+                    }}
+                  >
+                    {loading ? (
+                      <>
+                        <CircularProgress
+                          size={20}
+                          sx={{ mr: 1, color: "white" }}
+                        />
+                        Creando reserva...
+                      </>
+                    ) : (
+                      "Confirmar Reserva"
+                    )}
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Box sx={{ mt: 3, textAlign: "center" }}>
+            <Typography variant="body2" color="text.secondary">
+              * Las reservas están sujetas a disponibilidad. Te contactaremos
+              para confirmar.
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              * Para grupos de más de 8 personas, por favor llama directamente.
+            </Typography>
+          </Box>
+        </Paper>
+      </Container>
+
       {/* Google Maps Section */}
       <Container maxWidth="lg" sx={{ mb: 4 }}>
         <Typography
@@ -272,7 +526,39 @@ const Reservas = () => {
           ></iframe>
         </Box>
       </Container>
-    </>
+
+      {/* Notificaciones */}
+      <Snackbar
+        open={showSuccess}
+        autoHideDuration={6000}
+        onClose={() => setShowSuccess(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setShowSuccess(false)}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          ¡Reserva creada exitosamente! Te contactaremos pronto para
+          confirmarla.
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={showError}
+        autoHideDuration={6000}
+        onClose={() => setShowError(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setShowError(false)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {errorMessage}
+        </Alert>
+      </Snackbar>
+    </LocalizationProvider>
   );
 };
 
