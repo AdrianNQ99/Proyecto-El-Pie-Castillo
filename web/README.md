@@ -1,12 +1,91 @@
-# React + Vite
+# 💼 Portfolio Personal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio web profesional desarrollado con React y Vite, diseñado para mostrar proyectos, habilidades y experiencia como desarrollador.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✨ Diseño moderno y responsivo
+- 🎨 Interfaz diseñada con Tailwind CSS
+- 📱 Totalmente adaptable a dispositivos móviles
+- 🎯 Sección de proyectos destacados
+- 📧 Formulario de contacto funcional
+- ⚡ Rendimiento optimizado con Vite
+- 🎭 Iconos personalizados con Lucide React y React Icons
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:**
+  - React 19.2
+  - Vite 7.2
+  - Tailwind CSS 4.1
+  
+- **Herramientas:**
+  - ESLint (linting)
+  - Lucide React (iconos)
+  - React Icons
+  - Resend (envío de emails)
+
+## 📦 Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/tu-usuario/portfolio.git
+cd portfolio
+```
+
+2. Instala las dependencias:
+```bash
+npm install
+```
+
+3. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+```
+
+4. Abre tu navegador en `http://localhost:5173`
+
+## 📜 Scripts Disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run preview` - Previsualiza la build de producción
+- `npm run lint` - Ejecuta ESLint para verificar el código
+
+## 📁 Estructura del Proyecto
+
+```
+Portfolio/
+├── api/              # API endpoints
+│   └── contact.js    # Endpoint de contacto
+├── public/           # Recursos públicos
+│   ├── images/       # Imágenes del portfolio
+│   └── logos/        # Logos y assets
+├── src/
+│   ├── components/   # Componentes React
+│   │   ├── GenericComponents/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── ProyectCard.jsx
+│   │   └── HomeComponets/
+│   │       ├── About.jsx
+│   │       ├── Contact.jsx
+│   │       ├── Hero.jsx
+│   │       └── Proyectos.jsx
+│   ├── data/         # Datos del portfolio
+│   │   └── protectosData.js
+│   ├── pages/        # Páginas
+│   │   └── Inicio.jsx
+│   ├── routes/       # Configuración de rutas
+│   │   └── routesConfig.jsx
+│   ├── styles/       # Estilos globales
+│   │   └── globals.css
+│   └── main.jsx      # Punto de entrada
+├── eslint.config.js
+├── index.html
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
+```
+
+⭐ Si te gustó este proyecto, no olvides darle una estrella en GitHub
